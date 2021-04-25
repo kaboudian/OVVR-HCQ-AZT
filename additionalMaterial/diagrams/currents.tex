@@ -1,0 +1,218 @@
+%=====================================================================
+% Shader Name Cheat-Sheet
+%
+% Programmer	:	ABOUZAR KABOUDIAN
+% Date			:	2016-08-03
+% Place			: 	Gergia Institute of Technology
+%=====================================================================
+\documentclass[tikz, border=10pt]{standalone}
+
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\usepackage{textcomp}
+
+\usetikzlibrary{shapes.callouts}
+\tikzset{
+  level/.style   = { ultra thick, blue },
+  connect/.style = { thick},
+  notice/.style  = { draw, rectangle callout, callout relative pointer={#1} },
+  label/.style   = { text width=2cm }
+}
+
+
+\newcounter{rowNo}
+\newcounter{colNo}
+\newcommand{\x}{8*\arabic{colNo}}
+\newcommand{\y}{-\arabic{rowNo}}
+\newcommand{\newRow}{\stepcounter{rowNo}}
+\newcommand{\newColumn}{\setcounter{rowNo}{0}\stepcounter{colNo}}
+
+\renewcommand{\checked}[1]{
+	\if#12
+			{$\checkmark$}
+	\else
+		\if#13
+			{$\checkmark\checkmark$}
+		\else
+			{\ }	
+		\fi
+	\fi
+}
+
+\newcommand{\finished}[1]{
+	\if#11
+		{$\dag$}
+	\else
+		\if#12
+			{$\ddag$}
+		\else
+			{\ }	
+		\fi
+	\fi
+}
+\newcommand{\dble}[1]{
+	\if#11
+	{$-$}
+	\else 
+	\if#12
+	{$+$}
+	\else
+	{\ }	
+	\fi
+	\fi
+}
+\newcommand{\pppp}[1]{
+	\if#11
+		\textopenbullet
+	\else 
+		\if#12 
+			\textbullet
+		\else
+			\if#13
+				$\checkmark$
+			\else	
+				\
+			\fi
+		\fi
+	\fi	
+}
+
+\newcommand{\Current}[3]{
+	\newRow
+	\node[label] at (\x,\y) {$#1$} ;
+	\draw[connect,color=red] (\x+.5,\y)	 -- (\x+1.5,\y) ;
+	\node[label] at (\x+3.,\y) {\texttt{#2}} ;
+	\node[label] at (\x+4.5,\y) {\texttt{#3}} ;
+}
+
+\newcommand{\implement}[2]{
+	\node[label] at (\x+5.5,\y) {\checked{#1}	} ;
+	\node[label] at (\x+5.9,\y) {\pppp{#2}		} ;	
+}
+
+\newcommand{\txt}[1]{\mbox{\scriptsize #1}}
+\newcommand{\utxt}[1]{_{\txt{#1}}}
+\newcommand{\ion}[1]{[\mbox{#1}]}
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+% Document begins
+%@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+\begin{document}
+	
+%=====================================================================
+% Tikz picture environment
+%=====================================================================
+\begin{tikzpicture}				    
+%---------------------------------------------------------------------
+% First Column
+%---------------------------------------------------------------------
+	\Current{I\utxt{Na,fast}}{knni}{}
+	\implement{2}{0}
+	
+	\Current{I\utxt{Na,late}}{knni}{}
+	\implement{2}{0}
+	
+	\Current{I\utxt{Na}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{NaCa}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{to}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{CaL}}{kiii}{g}
+	\implement{2}{2}
+	
+	\Current{I\utxt{CaNa}}{kiii}{b}
+	\implement{1}{2}
+	
+	\Current{I\utxt{CaK}}{kiii}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{Kr}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{Ks}}{knni}{a}
+	\implement{2}{2}
+
+%---------------------------------------------------------------------
+% Second  Column
+%---------------------------------------------------------------------
+	\newColumn	
+
+	
+	\Current{I\utxt{K1}}{knni}{a}
+	\implement{2}{2}
+
+
+	\Current{I\utxt{NaCa,i}}{ciii}{g}
+	\implement{2}{0}
+	
+	\Current{I\utxt{NaCa,ss}}{ciii}{b}
+	\implement{2}{0}
+
+	
+	\Current{J\utxt{NaK,Na}}{knni}{}
+	\implement{2}{arg2}
+	
+	
+	\Current{J\utxt{NaK,K}}{knni}{}
+	\implement{2}{arg2}
+	
+	\Current{I\utxt{NaK}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{Nab}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{Kb}}{knni}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{Cab}}{ciii}{a}
+	\implement{2}{2}
+	
+	\Current{I\utxt{pCa}}{ciii}{a}
+	\implement{2}{2}
+		
+%---------------------------------------------------------------------
+% Third Column
+%---------------------------------------------------------------------
+	\newColumn
+	
+	\Current{J\utxt{rel,NP}}{xjjc}{g}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{rel,CaMK}}{xjjc}{b}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{rel}}{ccjj}{a}
+	\implement{2}{arg2}	
+	
+	\Current{J\utxt{up,NP}}{ccjj}{}
+	\implement{2}{arg2}
+		
+	\Current{J\utxt{up,CaMK}}{ccjj}{}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{up}}{ccjj}{b}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{leak}}{ccjj}{}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{tr}}{ccjj}{}
+	\implement{2}{arg2}
+
+	
+	\Current{J\utxt{diff,Ca}}{}{}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{diff,Na}}{}{}
+	\implement{2}{arg2}
+	
+	\Current{J\utxt{diff,K}}{}{}
+	\implement{2}{arg2}
+	
+\end{tikzpicture}
+\end{document}
