@@ -716,8 +716,8 @@ function createGui(){
  *------------------------------------------------------------------------
  */
     env.gui_3.scrpt = env.gui_3.addFolder('Scripting') ;
-    env.gui_3.scrpt.add( env, 'scripting').onChange( env.initScript ) ;
-   env.gui_3.scrpt.add( env, 'setName', env.sets ) ;
+    env.gui_3.scrpt.add( env, 'scripting') ;
+    env.gui_3.scrpt.add( env, 'setName', env.sets ) ;
 
  //   env.gui_3.svld.add( env, 'outputSetupFileName').name('File Name') ;
  //   env.gui_3.svld.add( env, 'outputSetupClick').name('Save XML File') ;
@@ -1270,7 +1270,7 @@ function loadWebGL()
  * scripting
  *------------------------------------------------------------------------
  */
-    env.scripting = false ;
+    env._scripting = true ;
     env.sets = [
         'control',
         'hcq_low',
@@ -1308,6 +1308,10 @@ function loadWebGL()
                 }
             }
         }
+    } ) ;
+    Object.defineProperty( env, 'scripting',{
+        get : ()=>{return env._scripting } ,
+        set : (nv) => { env._scripting = nv; env.scriptInit() ; }
     } ) ;
 
 
@@ -1420,8 +1424,7 @@ function loadWebGL()
         // FIXME: DON'T FORGET TO FIX THIS PART TO PROPERLY RESET THE CODE
         // AT THE BEGINNING OF CHANGING A PARAMETER
         // (seems fixed! double check the following part)
-        env.gui_1.updateDisplay({verbose : false } ) ;
-        env.gui_2.updateDisplay({verbose : false } ) ;
+        env.gui.updateDisplay({verbose : false } ) ;
         env.init() ;
         env.disp.init() ;
         env.plot.init(0) ;
